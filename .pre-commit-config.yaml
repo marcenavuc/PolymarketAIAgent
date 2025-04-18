@@ -1,0 +1,43 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0 # Use the latest stable version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0 # Use the latest stable version
+    hooks:
+      - id: flake8
+        args: [--max-line-length=120]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0 # Use the latest stable version
+    hooks:
+      - id: check-json # Validates JSON files
+      - id: check-ast # Ensures Python files parse correctly
+
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.0 # Use the latest stable version
+    hooks:
+      - id: nbqa-black # Runs black formatter on Jupyter Notebooks
+      - id: nbqa-flake8 # Runs flake8 on Jupyter Notebooks
+      - id: nbqa-isort # Sorts imports in Jupyter Notebooks
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.12.0 # Use the latest stable version
+    hooks:
+      - id: isort # Sorts and formats Python imports
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0 # Use the latest stable version
+    hooks:
+      - id: prettier # Formats JSON, YAML, Markdown files
