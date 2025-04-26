@@ -3,18 +3,10 @@ import json
 import numpy as np
 import os
 import pandas as pd
+import pandas as pd
 
 
 def create_prompt(question, news_df, klines_df, greed_fear_index_df) -> str:
-    old_prompt = """
-    Use following data to answer on question (news and klines data):
-    {df_str}
-
-    Write strictly 'Yes' or 'No' to the following question: Will be {question} \nAnswer:
-""".format(
-        df_str='\n\n'.join([news_df.to_markdown(), klines_df.to_markdown()]),
-        question=question
-    )
     prompt = """
     You are an expert financial analyst. You will be given a market question and relevant data. 
     Based solely on the data provided, answer the question.
@@ -25,11 +17,11 @@ def create_prompt(question, news_df, klines_df, greed_fear_index_df) -> str:
     Data with great fear index, which will help you understand the type of market on each of the days:
     {df_greed_fear_index}
     Respond *only* with 'Yes' or 'No'. Do not include any reasoning, explanation, or additional text.
-    Question is: question} \nAnswer:
+    Question is: {question} \nAnswer:
 """.format(
-        df_news='\n\n'.join([news_df.to_markdown(),'\n\n']),
-        df_klines='\n\n'.join([klines_df.to_markdown(),'\n\n']),
-        df_greed_fear_index='\n\n'.join([greed_fear_index_df.to_markdown(),'\n\n']),
+        df_news='\n\n'.join([news_df.to_markdown(), '\n\n']),
+        df_klines='\n\n'.join([klines_df.to_markdown(), '\n\n']),
+        df_greed_fear_index='\n\n'.join([greed_fear_index_df.to_markdown(), '\n\n']),
         question=question
     )
     return prompt

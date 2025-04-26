@@ -174,8 +174,20 @@ def get_klines_ta(symbol: str, start_date: str, end_date: str, interval: str = "
     return klines_df
 
 
-def get_data_ta(tiket, start_date, end_date):
-    news_df = get_crypto_news_from_cryptopanic(tiket, start_date, end_date)
-    klines_df = get_klines_ta(tiket + 'USDT', start_date, end_date)
+def get_fear_greed_by_date(start_date, end_date):
+    start_date = datetime.strptime(start_date, DT_FORMAT).date()
+    end_date = datetime.strptime(end_date, DT_FORMAT).date()
 
-    return news_df, klines_df
+    url = f"https://api.alternative.me/fng/?limit=365"
+    response = requests.get(url)
+    data = response.json()['data']
+    
+    df = pd.DataFrame(data)
+    df['timestamp'] = pd.to_datetime(pd.to_numeric(df['timestamp']), unit='s').dt.date
+    mask = (df['timestamp'] >= start_date) & (df['timestamp'] <= end_date)
+    filtered_df = df.loc[mask]
+    
+    filtered_df = filtered_df.rename(columns={'value': 'index', 'value_classification': 'classification', 'timestamp': 'date'})
+    filtered_df = filtered_df[['date', 'index', 'classification']].sort_values('date', ascending=False)
+    
+    return filtered_df
