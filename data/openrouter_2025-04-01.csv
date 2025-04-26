@@ -1,0 +1,8 @@
+model,text,yes_tokens_found,no_tokens_found,probability_token,probability_text,prob,date
+deepseek/deepseek-chat-v3-0324:free,no,"['Yes', 'Yes']","['No', 'No']",1.670142582102693e-05,0.0,1.670142582102693e-05,2025-04-01
+openai/gpt-4o-2024-11-20,no,['Yes'],['No'],0.0021827159453505426,0.0,0.0021827159453505426,2025-04-01
+openai/chatgpt-4o-latest,yes,"['Yes', ' Yes']",['No'],0.9820137923798655,1.0,0.9820137923798655,2025-04-01
+qwen/qwq-32b:free,no,[],['no'],,0.0,0.0,2025-04-01
+google/gemini-2.5-pro-preview-03-25,no,[],['no'],,0.0,0.0,2025-04-01
+anthropic/claude-3.7-sonnet:thinking,no,[],['no'],,0.0,0.0,2025-04-01
+deepseek/deepseek-r1:free,no,[],['no'],,0.0,0.0,2025-04-01
